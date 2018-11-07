@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} home {% endblock%}
+
+
+{% block main1%}
+    {% if user.is_authenticated %}
+        <h1>Bem Vindo</h1>
+        <p>ola {{user.username}}</p>
+    {% else %}
+        <h1>Bem Vindo</h1>
+        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+    {% endif %}
+{% endblock %}
+{% block main2%}
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %} " class="btn btn-outline-primary">Logout</a>
+    {% else %}
+        <a href="{% url 'person_new' %}" class="btn btn-outline-primary">Register</a>
+    {% endif %}
+{% endblock%}
+

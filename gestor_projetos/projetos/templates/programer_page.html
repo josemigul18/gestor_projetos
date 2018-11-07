@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %} Programer Page {% endblock%}
+
+{% block main1%}
+    <h1>Programer Page </h1>
+    <br>
+    <h3>Assignments to Complete </h3>
+    <ul class="list-group">
+        {% for assignment in assignments %}
+            {% if assignment.finished == False %}
+                {% if assignment.programer_id == programer.id %}
+                    <a href="{% url 'assignment_detail' assignment.id %}" class="list-group-item list-group-item-action">{{assignment.name}} -->  {{assignment.date}}</a>
+                {%endif%}
+            {%endif%}
+        {% endfor %}
+    </ul>
+
+    <br><br>
+    <h3>Assignments Complete </h3>
+    <ul class="list-group">
+        {% for assignment in assignments %}
+            {% if assignment.finished == True %}
+                {% if assignment.programer_id == programer.id %}
+                    <a href="{% url 'assignment_detail' assignment.id %}" class="list-group-item list-group-item-action">{{assignment.name}} --> {{assignment.date}}</a>
+                {%endif%}
+            {%endif%}
+        {% endfor %}
+    </ul>
+
+
+{% endblock%}
+
+{% block main2%}
+    <a href="{% url 'logout' %}" class="btn btn-outline-primary">Logout</a>
+{% endblock%}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %} Management {% endblock%}
+
+{% block main1%}
+    <h1>Project Management</h1>
+    <a href="{% url 'proj_new' %}" class="btn btn-primary btn-lg">New Project</a>
+    <br><br><br><br>
+    <h3>Project List</h3>
+    <ul class="list-group">
+        {% for project in projects %}
+            {% if project.username_manager == user%}
+                <a href="{% url 'proj_detail' project.id %}" class="list-group-item list-group-item-action">{{ project.name}}</a>
+            {% endif %}
+        {% endfor %}
+
+    </ul>
+{% endblock%}
+
+{% block main2%}
+    <a href="{% url 'logout' %}" class="btn btn-outline-primary">Logout</a>
+{% endblock%}

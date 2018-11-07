@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %} Register {% endblock%}
+
+{% block main1%}
+
+    <h2>Do you want to delete {{ project.name }}?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <br>
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'proj_detail' project.id %}" class="btn btn-outline-primary">Cancel</a>
+    </form>
+
+{% endblock%}
+
+
+{% block main2%}
+    <a href="{% url 'logout' %}" class="btn btn-outline-primary">Logout</a>
+{% endblock%}

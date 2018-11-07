@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %} Assignment Details {% endblock%}
+
+{% block main1%}
+    <h1>Assignment Details </h1>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Assignment Name: {{assignment.name}}</li>
+        <li class="list-group-item">Assignment Date: {{assignment.date}}</li>
+        <li class="list-group-item">Assignment Description: {{assignment.description}}</li>
+        <li class="list-group-item">Project Name: {{project.name}}</li>
+        <li class="list-group-item">Project Manager: {{project.username_manager}}</li>
+        <li class="list-group-item">Programer: {{programer.username}}</li>
+        <li class="list-group-item">Finished: {{assignment.finished}}</li>
+    </ul>
+    <br><br>
+
+    {% if programer.username == user %}
+        {% if assignment.finished == False %}
+            <a href="{% url 'assignment_mark_finished_confirm' assignment.id %}" class="btn btn-primary">Mark Finished</a>
+            <a href="{% url 'programer_page' %}" class="btn btn-outline-primary">Back</a>
+        {% else %}
+            <a href="{% url 'programer_page' %}" class="btn btn-outline-primary">Back</a>
+        {% endif %}
+    {% else %}
+        <a href="{% url 'proj_detail' project.id %}" class="btn btn-outline-primary">Back</a>
+    {% endif %}
+
+    <br><br>
+{% endblock%}
+
+{% block main2%}
+    <a href="{% url 'logout' %}" class="btn btn-outline-primary">Logout</a>
+{% endblock%}

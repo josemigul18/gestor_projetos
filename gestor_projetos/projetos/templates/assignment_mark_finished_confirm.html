@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %} Assignment Details {% endblock%}
+
+{% block main1%}
+    <h2>Do you want to mark {{ assignment.name }} finished?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Mark Finished</button>
+        <a href="{% url 'assignment_detail' assignment.id %}" class="btn btn-outline-primary">Cancel</a>
+    </form>
+
+{% endblock%}
+
+{% block main2%}
+    <a href="{% url 'logout' %}" class="btn btn-outline-primary">Logout</a>
+{% endblock%}

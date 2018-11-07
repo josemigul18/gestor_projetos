@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %} Management {% endblock%}
+
+{% block main1%}
+    <h1>New Project</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <button type="submit" class="btn btn-primary">Save</button>
+        {% if proj_id  == -1 %}
+            <a href="{% url 'proj_list' %}" class="btn btn-danger">Cancel</a>
+        {% else %}
+            <a href="{% url 'proj_detail' id=proj_id %}" class="btn btn-danger">Cancel</a>
+        {% endif %}
+    </form>
+{% endblock%}
+
+{% block main2%}
+    <a href="{% url 'logout' %}">Logout</a>
+{% endblock%}
